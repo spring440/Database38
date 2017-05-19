@@ -12,8 +12,8 @@ ALTER PROC BudapestLevelPresentations
 	--If invalid data raise error
 	BEGIN TRY
 		SELECT * FROM PresenterPresentation
-		INNER JOIN ClassLevel ON PresenterPresentation.classLevelId = ClassLevel.classLevelId 
-		INNER JOIN Event ON PresenterPresentation.eventId = Event.eventId
+		LEFT JOIN ClassLevel ON PresenterPresentation.classLevelId = ClassLevel.classLevelId 
+		LEFT JOIN Events ON PresenterPresentation.eventId = Events.eventId
 		WHERE  PresenterPresentation.classLevelId = @level AND PresenterPresentation.eventId = @Event
 	END TRY
 	BEGIN CATCH
